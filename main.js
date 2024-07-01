@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const formulario = document.getElementById("formularioCredito");
+    formulario.addEventListener("submit", procesarFormulario);
+
+    const creditos = obtenerCreditosStorage();
+    mostrarResultadosAnteriores(creditos);
+});
 
 class Credito {
     constructor(monto, interes, cuotas) {
@@ -22,12 +29,12 @@ class Credito {
     }
 }
 
-const creditos = [];
+function procesarFormulario(event) {
+    event.preventDefault();
 
-function simuladorDeCreditos() {
-    const monto = obtenerMonto();
-    const interes = obtenerInteres();
-    const cuotas = obtenerCuotas();
+    const monto = parseFloat(document.getElementById("monto").value);
+    const interes = parseFloat(document.getElementById("interes").value);
+    const cuotas = parseInt(document.getElementById("cuotas").value);
 
     if (isNaN(monto) || isNaN(interes) || isNaN(cuotas)) {
         alert("Por favor, ingrese valores numéricos válidos.");
@@ -35,48 +42,37 @@ function simuladorDeCreditos() {
     }
 
     const nuevoCredito = new Credito(monto, interes, cuotas);
-    creditos.push(nuevoCredito);
-    mostrarResultados(nuevoCredito);
-    analizarCreditos();
+    almacenarCredito(nuevoCredito);
+    mostrarResultado(nuevoCredito);
+    mostrarResultadosAnteriores(obtenerCreditosStorage());
 }
 
-function obtenerMonto() {
-    return parseFloat(prompt("Ingrese el monto del crédito:"));
+function mostrarResultado(credito) {
+    const resultadoDiv = document.getElementById("resultado");
+    resultadoDiv.innerHTML = `
+        <p>Monto total a pagar: ${credito.montoTotal.toFixed(2)}</p>
+        <p>Cuota mensual: ${credito.cuotaMensual.toFixed(2)}</p>
+    `;
 }
 
-function obtenerInteres() {
-    return parseFloat(prompt("Ingrese la tasa de interés (%):"));
+function almacenarCredito(credito) {
+    const creditos = obtenerCreditosStorage();
+    creditos.push(credito);
+    localStorage.setItem("creditos", JSON.stringify(creditos));
 }
 
-function obtenerCuotas() {
-    return parseInt(prompt("Ingrese la cantidad de cuotas:"));
+function obtenerCreditosStorage() {
+    const creditos = localStorage.getItem("creditos");
+    return creditos ? JSON.parse(creditos) : [];
 }
 
-function mostrarResultados(credito) {
-    alert(`
-        Monto total a pagar: ${credito.montoTotal.toFixed(2)}
-        Cuota mensual: ${credito.cuotaMensual.toFixed(2)}
-    `);
-}
-
-function analizarCreditos() {
-    const totalCreditos = creditos.length;
-    const montoPromedio = creditos.reduce((acc, credito) => acc + credito.monto, 0) / totalCreditos;
-    const mayorMonto = creditos.reduce((acc, credito) => credito.monto > acc ? credito.monto : acc, 0);
-    const menorMonto = creditos.reduce((acc, credito) => credito.monto < acc ? credito.monto : acc, Infinity);
-
-    console.log(`Total de créditos registrados: ${totalCreditos}`);
-    console.log(`Monto promedio de los créditos: ${montoPromedio.toFixed(2)}`);
-    console.log(`Mayor monto de crédito: ${mayorMonto}`);
-    console.log(`Menor monto de crédito: ${menorMonto}`);
-}
-
-function filtrarCreditosPorInteres(interesMinimo) {
-    const creditosFiltrados = creditos.filter(credito => credito.interes >= interesMinimo);
-    creditosFiltrados.forEach(credito => {
-        console.log(`Crédito con monto ${credito.monto} e interés ${credito.interes}%`);
+function mostrarResultadosAnteriores(creditos) {
+    const resultadoDiv = document.getElementById("resultado");
+    resultadoDiv.innerHTML = "<h2>Créditos Anteriores</h2>";
+    creditos.forEach(credito => {
+        resultadoDiv.innerHTML += `
+            <p>Monto: ${credito.monto} | Interés: ${credito.interes}% | Cuotas: ${credito.cuotas}</p>
+            <p>Cuota mensual: ${credito.cuotaMensual.toFixed(2)} | Monto total: ${credito.montoTotal.toFixed(2)}</p>
+        `;
     });
 }
-
-console.log("Ejemplo de filtrado de créditos:");
-filtrarCreditosPorInteres(10);
