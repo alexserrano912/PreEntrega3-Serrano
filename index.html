@@ -4,41 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Créditos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <link rel="stylesheet" href="./style.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="./data.json">
 </head>
 <body>
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h1>Simulador de Créditos</h1>
-                    </div>
-                    <div class="card-body">
-                        <form id="formularioCredito">
-                            <div class="mb-3">
-                                <label for="monto" class="form-label">Monto del crédito:</label>
-                                <input type="number" id="monto" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="interes" class="form-label">Tasa de interés (%):</label>
-                                <input type="number" id="interes" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="cuotas" class="form-label">Cantidad de cuotas:</label>
-                                <input type="number" id="cuotas" class="form-control" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">Calcular</button>
-                        </form>
-                        <div id="resultado" class="mt-4"></div>
-                        <div id="creditosAnteriores" class="mt-4"></div>
-                    </div>
-                </div>
+    <div class="container text-center mt-5">
+        <h1 class="mb-4">Simulador de Créditos</h1>
+        <form id="creditoForm" class="form-inline justify-content-center">
+            <div class="form-group mb-2">
+                <label for="monto" class="mr-2">Monto:</label>
+                <input type="number" id="monto" class="form-control" required>
             </div>
-        </div>
+            <div class="form-group mb-2">
+                <label for="interes" class="mr-2">Interés (%):</label>
+                <input type="number" id="interes" class="form-control" required>
+            </div>
+            <div class="form-group mb-2">
+                <label for="cuotas" class="mr-2">Cuotas:</label>
+                <input type="number" id="cuotas" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Calcular</button>
+        </form>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="./main.js"></script>
 </body>
 </html>

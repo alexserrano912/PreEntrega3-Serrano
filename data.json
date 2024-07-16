@@ -1,0 +1,10 @@
+[
+    {
+        "nombre": "Crédito Personal",
+        "interes": 5
+    },
+    {
+        "nombre": "Crédito Hipotecario",
+        "interes": 3
+    }
+]
