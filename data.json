@@ -1,10 +1,14 @@
-[
-    {
-        "nombre": "Crédito Personal",
-        "interes": 5
-    },
-    {
-        "nombre": "Crédito Hipotecario",
-        "interes": 3
-    }
-]
+{
+    "creditos": [
+        {
+            "monto": 10000,
+            "interes": 5,
+            "cuotas": 12
+        },
+        {
+            "monto": 5000,
+            "interes": 3,
+            "cuotas": 6
+        }
+    ]
+}

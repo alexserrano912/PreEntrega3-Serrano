@@ -4,35 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Créditos</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <img src="./simulador.jpg" alt="Simulador de Credito">
-    <div class="container text-center mt-5">
-        <h1 class="mb-4">Simulador de Créditos</h1>
-        <form id="creditoForm" class="form-inline justify-content-center">
-            <div class="form-group mb-2">
-                <label for="monto" class="mr-2"> Monto:</label>
-                <input type="number" id="monto" class="form-control" required>
-            </div>
-            <div class="form-group mb-2">
-                <label for="interes" class="mr-2"> Interéses (%):</label>
-                <input type="number" id="interes" class="form-control" required>
-            </div>
-            <div class="form-group mb-2">
-                <label for="cuotas" class="mr-2"> Cuotas: </label>
-                <input type="number" id="cuotas" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary mb-2">Calcular</button>
-        </form>
+    <div class="text-center">
+        <img src="./simulador.jpg" alt="Simulador de Créditos" class="img-fluid mb-4">
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <div class="container">
+        <h1 class="text-center">Simulador de Créditos</h1>
+        <div class="formulario">
+            <label for="monto">Monto del Crédito:</label>
+            <input type="number" id="monto" class="form-control" placeholder="Ej: 10000">
+            <label for="interes">Tasa de Interés (%):</label>
+            <input type="number" id="interes" class="form-control" placeholder="Ej: 5">
+            <label for="cuotas">Número de Cuotas:</label>
+            <input type="number" id="cuotas" class="form-control" placeholder="Ej: 12">
+            <button id="calcular" class="btn btn-primary">Calcular</button>
+        </div>
+        <div id="resultado" class="resultado mt-4"></div>
+    </div>
     <script src="./main.js"></script>
 </body>
 </html>

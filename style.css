@@ -5,13 +5,28 @@ body {
 
 h1 {
     border: 2px solid #007bff;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 5px;
     background-color: #007bff;
     color: white;
 }
 
-.container {
-    margin-top: 100px;
+.formulario {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: -1px 0px 17px 9px rgba(0, 0, 0, 0.52);
+    text-align: center;
 }
 
+.resultado {
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
